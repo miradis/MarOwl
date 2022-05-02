@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "719291050720",
+    "project_id": "marowl",
+    "storage_bucket": "marowl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719291050720:android:90b6d50533ce534938be85",
+        "android_client_info": {
+          "package_name": "com.example.marowl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719291050720-f2b4o5luki84r4d7340rtv6rqoae9k6t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-Vs3EzfdP43K3DzhTF6JYb60cDDozNnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719291050720-f2b4o5luki84r4d7340rtv6rqoae9k6t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
