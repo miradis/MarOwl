@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/cardview_dark_background"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,46 +21,60 @@
         android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold"
-        android:layout_margin="50dp"
+        android:layout_margin="5dp"
         android:gravity="center"/>
+    <EditText
+        android:id="@+id/register_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login"
+        android:hint="Email"
+        android:textColor="@color/white"
+        android:layout_margin="5dp"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/ic_baseline_email_24"/>
+        android:inputType="textEmailAddress"
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login"
         android:hint="Username"
-        android:textColor="@color/dark_red"
-        android:layout_margin="10dp"
+        android:textColor="@color/white"
+        android:layout_margin="5dp"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_person_24"
-        android:inputType="textPassword"
+        android:inputType="text"
         />
     <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
-        android:hint="Email"
-        android:textColor="@color/dark_red"
-        android:layout_margin="10dp"
-        android:padding="20dp"
-        android:drawableLeft="@drawable/ic_baseline_info_24"
-        />
-    <EditText
-        android:id="@+id/password"
+        android:id="@+id/register_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
         android:hint="Password"
-        android:textColor="@color/dark_red"
-        android:layout_margin="10dp"
+        android:textColor="@color/white"
+        android:layout_margin="5dp"
         android:padding="20dp"
+        android:inputType="textPassword"
+        android:drawableLeft="@drawable/ic_baseline_info_24"
+        />
+    <EditText
+        android:id="@+id/repeat_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:hint="Repeat password"
+        android:textColor="@color/white"
+        android:layout_margin="5dp"
+        android:padding="20dp"
+        android:inputType="textPassword"
         android:drawableLeft="@drawable/ic_baseline_info_24"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login_btn"
+        android:id="@+id/register_btn"
         android:layout_below="@+id/password"
         android:text="SIGN UP"
         android:backgroundTint="@color/dark_red"
@@ -64,11 +82,12 @@
         android:layout_gravity="center"
         />
     <TextView
-        android:id="@+id/registerLogin"
+        android:id="@+id/signInText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@color/white"
         android:text="Sign in"
         android:layout_margin="5dp"/>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

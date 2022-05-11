@@ -1,4 +1,4 @@
-package com.example.marowl.ui.dashboard;
+package com.example.marowl.ui.favorite;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,11 +39,11 @@ public class ComicsPreviewFragment extends Fragment {
 
         //Inflate the comics fragment layout
 
-        View rootView=inflater.inflate(R.layout.comics_fragment,container,false);
+        View rootView=inflater.inflate(R.layout.card_layout,container,false);
 
-        final ImageView imageComics=rootView.findViewById(R.id.comics_preview);
-        final TextView title=rootView.findViewById(R.id.comics_title);
-        final TextView description=rootView.findViewById(R.id.comics_description);
+        final ImageView imageComics=rootView.findViewById(R.id.comics_image);
+        final TextView title=rootView.findViewById(R.id.comic_title);
+        final TextView description=rootView.findViewById(R.id.comic_detail);
 
 
 

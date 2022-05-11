@@ -5,26 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.account.accountFragment"
+    tools:context=".ui.account.AccountFragment"
     >
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/account_section"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="account"
-        android:textSize="15dp"
-        android:textColor="@color/white"
-        android:drawableLeft="@drawable/ic_baseline_account_circle_24"
-        />
+        android:orientation="horizontal"
+        android:background="@drawable/round_corner"
 
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_account_circle_36"
+            android:layout_margin="10dp">
+        </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="history"
+            android:text="Account"
+            android:layout_gravity="center"
+            android:textSize="16dp"
             android:padding="10dp"
-            android:textSize="15dp"
-            android:textColor="@color/white"
-            android:drawableLeft="@drawable/ic_comics_history_24"
-            />
+            android:layout_marginLeft="15dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/round_corner"
+
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comics_history_24"
+            android:layout_margin="10dp">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="History"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"
+            ></TextView>
+    </LinearLayout>
     <TextView
         android:id="@+id/text_account"
         android:layout_width="match_parent"

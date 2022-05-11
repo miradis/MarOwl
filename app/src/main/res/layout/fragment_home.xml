@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
+    android:orientation="vertical"
     >
+    <SearchView
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:textColorHint="@color/light_white"
+        android:textSize="18dp"
+        android:queryHint="Write a comics"
+        android:textColor="@color/white"
+        android:hint="Select a comics"
+        android:background="@color/gray"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/random_btn"
+        android:layout_below="@+id/search_container"
+        android:text="Random comics"
+        android:backgroundTint="@color/dark_red"
+        android:layout_margin="10dp"
+        />
 
     <TextView
         android:id="@+id/text_home"
@@ -20,4 +44,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

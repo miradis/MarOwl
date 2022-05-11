@@ -1,4 +1,6 @@
 package com.example.marowl.ui.comic;
 
-public class ComicActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ComicActivity extends AppCompatActivity {
 }

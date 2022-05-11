@@ -3,8 +3,8 @@
 
     <item android:state_pressed="true"
         android:drawable="@color/black"/>
-    <item android:state_pressed="true"
+    <item android:state_checked="true"
         android:drawable="@color/black"/>
-    <item android:state_pressed="true"
-        android:drawable="@color/black"/>
+    <item
+        android:drawable="@color/light_white"/>
 </selector>

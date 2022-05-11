@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#808080</color>
     <color name="dark_red">#8B0000</color>
+    <color name="maroon">#800000</color>
+    <color name="light_white">#D2D2D2</color>
+    <color name="card_1">#A3E4D7</color>
+    <color name="card_2">#F9E79F</color>
+    <color name="card_3">#D7BDE2</color>
+    <color name="card_4">#D2C3D8</color>
+    <color name="dimgrey">#232323</color>
 </resources>
