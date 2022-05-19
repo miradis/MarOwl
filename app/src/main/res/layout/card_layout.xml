@@ -4,43 +4,45 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
-    app:cardBackgroundColor="#2F4F4F"
-    app:cardCornerRadius="12dp"
+    app:cardBackgroundColor="@color/background_color"
+    app:cardCornerRadius="10dp"
     app:cardElevation="0dp"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/comic_item_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="0dp"
+        android:layout_height="180dp"
+        android:padding="10dp"
         >
-
         <ImageView
             android:id="@+id/comics_image"
-            android:layout_width="172dp"
-            android:layout_height="204dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="131dp"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            />
         <TextView
             android:id="@+id/comic_title"
-            android:layout_width="230dp"
-            android:layout_height="39dp"
-
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="12dp"
+            android:textColor="@color/light_white"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
             android:text=""
-            android:textSize="30sp"
+            android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@id/comics_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/comic_detail"
-            android:layout_width="236dp"
-            android:layout_height="164dp"
-            android:layout_marginLeft="8dp"
+            android:layout_width="220dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="12dp"
             android:layout_marginTop="8dp"
             android:text=""
+            android:textColor="@color/light_white"
             app:layout_constraintLeft_toRightOf="@id/comics_image"
             app:layout_constraintTop_toBottomOf="@id/comic_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>

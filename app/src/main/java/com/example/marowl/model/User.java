@@ -1,8 +1,4 @@
-package com.example.marowl.entities;
-
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+package com.example.marowl.model;
 
 public class User {
     String email;

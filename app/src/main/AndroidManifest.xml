@@ -17,14 +17,15 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.authentication.SignUpActivity"
 ></activity>
         <activity android:name=".ui.authentication.SignInActivity"></activity>
-        <activity android:name=".ui.comic.ComicActivity"></activity>
+        <activity android:name=".ui.comic.ComicActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".ui.comic.AddComicActivity"></activity>
     </application>
 
 </manifest>

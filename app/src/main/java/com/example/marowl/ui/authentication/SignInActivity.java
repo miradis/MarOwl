@@ -6,15 +6,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 
 import com.example.marowl.MainActivity;
 import com.example.marowl.R;
 import com.example.marowl.ui.account.AccountFragment;
+import com.example.marowl.ui.home.HomeFragment;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignInActivity extends AppCompatActivity implements  View.OnClickListener {
     public EditText EditTextUsername;
@@ -29,6 +33,7 @@ public class SignInActivity extends AppCompatActivity implements  View.OnClickLi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         authenticationVIewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory
                 .getInstance(getApplication())).get(AuthenticationVIewModel.class);
         setContentView(R.layout.activity_login);
@@ -51,6 +56,7 @@ public class SignInActivity extends AppCompatActivity implements  View.OnClickLi
                 break;
 
             case R.id.login_btn:
+
                 userLogin();
                 break;
         }
@@ -59,7 +65,24 @@ public class SignInActivity extends AppCompatActivity implements  View.OnClickLi
     private void userLogin() {
         String email = EditTextUsername.getText().toString().trim();
         String password = EditTextPassword.getText().toString().trim();
-        authenticationVIewModel.signIn(email, password);
 
+        if (!email.isEmpty() && !password.isEmpty()) {
+            authenticationVIewModel.signIn(email, password);
+            Toast.makeText(this, "You successfully logged", Toast.LENGTH_SHORT).show();
+            authenticationVIewModel.getUserData().observe(this, new Observer<FirebaseUser>() {
+                @Override
+                public void onChanged(FirebaseUser firebaseUser) {
+                    if (firebaseUser!=null){
+                        goToMainPage();
+                    }
+                }
+            });
+        }
+        else {
+            Toast.makeText(this,"Please Enter your email and password",Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void goToMainPage(){
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

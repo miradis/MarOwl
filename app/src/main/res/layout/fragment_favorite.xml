@@ -18,11 +18,10 @@
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
-    <GridView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/comic_grid_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
         android:clickable="true"
         android:drawSelectorOnTop="true"
         android:focusable="true"

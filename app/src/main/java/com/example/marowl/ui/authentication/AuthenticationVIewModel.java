@@ -16,10 +16,12 @@ public class AuthenticationVIewModel extends AndroidViewModel {
     private AuthenticationRepository repository;
     private MutableLiveData<FirebaseUser>userData;
     private MutableLiveData<Boolean>loggedStatus;
+    private FirebaseUser currentUser;
 
     public AuthenticationVIewModel(@NotNull Application application) {
         super(application);
         repository=new AuthenticationRepository(application);
+        currentUser=repository.getCurrentUser();
         userData=repository.getFirebaseUserMutableLiveData();
         loggedStatus=repository.getUserLoggedMutableLiveData();
     }
@@ -44,5 +46,9 @@ public class AuthenticationVIewModel extends AndroidViewModel {
 
     public MutableLiveData<Boolean> getLoggedStatus() {
         return loggedStatus;
+    }
+
+    public FirebaseUser getCurrentUser() {
+        return currentUser;
     }
 }

@@ -1,19 +1,37 @@
 package com.example.marowl.ui.home;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+import com.example.marowl.model.ComicsModel;
+import com.example.marowl.repository.ComicsRepository;
 
-    private final MutableLiveData<String> mText;
+import java.util.List;
 
-    public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+public class HomeViewModel extends ViewModel implements ComicsRepository.onFirestoreTaskComplete{
+
+    private MutableLiveData<List<ComicsModel>> comicsListModel;
+    private ComicsRepository comicsRepository;
+
+    public HomeViewModel(){
+        comicsListModel=new MutableLiveData<>();
+        comicsRepository=new ComicsRepository(this);
+        comicsRepository.getComicsData();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    @Override
+    public void comicsDataLoaded(List<ComicsModel> comicsModelList) {
+        comicsListModel.setValue(comicsModelList);
+    }
+
+    @Override
+    public void onError(Exception e) {
+        Log.d("ComicsERROR ", "onError: "+e.getMessage());
+    }
+    public MutableLiveData<List<ComicsModel>> getComicsListModel() {
+        return comicsListModel;
     }
 }

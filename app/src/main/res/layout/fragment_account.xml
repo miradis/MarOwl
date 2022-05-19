@@ -23,6 +23,7 @@
             android:layout_margin="10dp">
         </ImageView>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Account"
@@ -48,6 +49,7 @@
             android:layout_margin="10dp">
         </ImageView>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="History"
@@ -56,6 +58,27 @@
             android:textSize="16dp"
             android:layout_marginLeft="15dp"
             ></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/add_comic_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comics_history_24"
+            android:layout_margin="10dp">
+        </ImageView>
+        <TextView
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Add a comics"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <TextView
         android:id="@+id/text_account"

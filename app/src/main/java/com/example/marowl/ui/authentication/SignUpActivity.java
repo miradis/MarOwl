@@ -2,7 +2,7 @@ package com.example.marowl.ui.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PatternMatcher;
+import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -10,22 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import com.example.marowl.R;
-import com.example.marowl.entities.User;
-import com.example.marowl.repository.AuthenticationRepository;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.marowl.ui.home.HomeFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -42,6 +35,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_register);
         authenticationVIewModel=new ViewModelProvider(this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory
                 .getInstance(getApplication())).get(AuthenticationVIewModel.class);
@@ -55,6 +49,26 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         TextSignInText.setOnClickListener(this);
         SignUpBtn.setOnClickListener(this);
 
+        Handler handler =new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (authenticationVIewModel.getCurrentUser()!=null){
+                    goToActivity();
+                }
+                else{
+                    goSignInActivity();
+                }
+            }
+        },4000);
+    }
+
+    private void goSignInActivity() {
+        startActivity(new Intent(this,SignInActivity.class));
+    }
+
+    private void goToActivity() {
+        startActivity(new Intent(this,HomeFragment.class));
     }
 
 
@@ -67,6 +81,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
             case R.id.register_btn:
                 registerUser();
+
                 break;
 
         }
@@ -78,69 +93,56 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         String email=EditTextEmail.getText().toString().trim();
         String password=EditTextPassword.getText().toString().trim();
         String repeat_pass=EditTextRepeat_password.getText().toString().trim();
+        if(email.isEmpty()){
+            EditTextEmail.setError("Email is required");
+            EditTextEmail.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            EditTextEmail.setError("Provide valid email");
+            EditTextEmail.requestFocus();
+        }
+        if (password.isEmpty()){
+            EditTextPassword.setError("Password is required");
+            EditTextPassword.requestFocus();
+            return;
+        }
+        if (repeat_pass.isEmpty()){
+            EditTextPassword.setError("Repeat password is required");
+            EditTextRepeat_password.requestFocus();
+            return;
+        }
+        if(!password.matches(repeat_pass)){
+            EditTextPassword.setError("Password doesn't match");
+            EditTextPassword.requestFocus();
+            return;
+        }
+        if (password.length()<6){
+            EditTextPassword.setError("Minimum password length should be 6 character");
+            EditTextPassword.requestFocus();
+            return;
+        }
+        if ( repeat_pass.length()<6){
+            EditTextPassword.setError("Minimum password length should be 6 character");
+            EditTextPassword.requestFocus();
+            return;
+        }
+
         authenticationVIewModel.signUp(email,password);
+        Toast.makeText(this,"Account was successfully created",Toast.LENGTH_SHORT).show();
+        authenticationVIewModel.getUserData().observe(this, new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                if (firebaseUser!=null){
+                    goToSignActivity();
+                }
+            }
+        });
+    }
+
+    private void goToSignActivity() {
         Intent intent=new Intent(this,SignInActivity.class);
         startActivity(intent);
-//        if(email.isEmpty()){
-//            EditTextPassword.setError("Email is required");
-//            EditTextEmail.requestFocus();
-//            return;
-//        }
-//        if (password.isEmpty()){
-//            EditTextPassword.setError("Password is required");
-//            EditTextPassword.requestFocus();
-//            return;
-//        }
-////        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-////            EditTextEmail.setError("Provide valid email");
-////            EditTextEmail.requestFocus();
-////        }
-//        if (repeat_pass.isEmpty()){
-//            EditTextPassword.setError("Repeat password is required");
-//            EditTextRepeat_password.requestFocus();
-//            return;
-//        }
-////        if(password.matches(repeat_pass)){
-////            EditTextPassword.setError("Password doesn't match");
-////            EditTextPassword.requestFocus();
-////            return;
-////        }
-//        if (password.length()<6){
-//            EditTextPassword.setError("Minimum password length should be 6 character");
-//            EditTextPassword.requestFocus();
-//            return;
-//        }
-//        if ( repeat_pass.length()<6){
-//            EditTextPassword.setError("Minimum password length should be 6 character");
-//            EditTextPassword.requestFocus();
-//            return;
-//        }
-//        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()){
-//                    FirebaseUser firebaseUser=auth.getCurrentUser();
-//                    User user=new User(email,password);
-//
-//                    FirebaseDatabase.getInstance().getReference("Users").
-//                            child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if (task.isSuccessful()){
-//                                Toast.makeText(SignUpActivity.this,"User has been created",Toast.LENGTH_SHORT).show();
-//                            }
-//                            else{
-//                                Toast.makeText(SignUpActivity.this,"Failed to register",Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                }
-//                else{
-//                    Toast.makeText(SignUpActivity.this,"Oops",Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
     }
 
 }

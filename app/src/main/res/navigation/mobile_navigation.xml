@@ -30,11 +30,13 @@
         <action
             android:id="@+id/action_navigation_account_to_signInActivity"
             app:destination="@id/signInActivity" />
+        <action
+            android:id="@+id/action_navigation_account_to_addComicActivity"
+            app:destination="@id/addComicActivity" />
+        <action
+            android:id="@+id/action_navigation_account_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/comicsPreviewFragment"
-        android:name="com.example.marowl.ui.favorite.ComicsPreviewFragment"
-        android:label="ComicsPreviewFragment" />
     <activity
         android:id="@+id/signInActivity"
         android:name="com.example.marowl.ui.authentication.SignInActivity"
@@ -45,4 +47,14 @@
         android:name="com.example.marowl.ui.authentication.SignUpActivity"
         android:label="SignUpActivity"
         tools:layout="@layout/activity_register"/>
+    <activity
+        android:id="@+id/addComicActivity"
+        android:name="com.example.marowl.ui.comic.AddComicActivity"
+        android:label="AddComicActivity"
+        tools:layout="@layout/activity_add_comics"/>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.marowl.ui.authentication.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/activity_login"/>
 </navigation>

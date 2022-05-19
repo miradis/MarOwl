@@ -7,7 +7,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.marowl.entities.User;
+import com.example.marowl.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AuthenticationRepository {
+public class AuthenticationRepository{
     String ACCOUNT_TAG="Firebase: ";
     private Application application;
     private MutableLiveData<FirebaseUser>firebaseUserMutableLiveData;
@@ -45,7 +45,7 @@ public class AuthenticationRepository {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(application,"User has been registered successfully!",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(application, "Logged",Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 Toast.makeText(application,"Failed to register",Toast.LENGTH_SHORT).show();
@@ -79,6 +79,27 @@ public class AuthenticationRepository {
         auth.signOut();
         userLoggedMutableLiveData.postValue(true);
     }
+//    public User showProfile(){
+//        reference=FirebaseDatabase.getInstance().getReference("Users");
+//        String userID=auth.getUid();
+//        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User userProfile=snapshot.getValue(User.class);
+//
+//                if (userProfile!=null){
+//                    return userProfile;
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//        return null;
+//    }
 
 
     public Application getApplication() {
@@ -95,5 +116,9 @@ public class AuthenticationRepository {
 
     public MutableLiveData<Boolean> getUserLoggedMutableLiveData() {
         return userLoggedMutableLiveData;
+    }
+
+    public FirebaseUser getCurrentUser() {
+        return auth.getCurrentUser();
     }
 }

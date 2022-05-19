@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -75,6 +76,7 @@ public class SignInFragment extends Fragment {
                 String pass=password.getText().toString();
                 if (email.isEmpty() || pass.isEmpty()){
                     authenticationVIewModel.signIn(email,pass);
+                    Toast.makeText(getContext(),authenticationVIewModel.getRepository().getApplication().toString(),Toast.LENGTH_SHORT).show();
                 }
 //                navController.navigate(R.id.action_signInFragment_to_navigation_home);
             }
